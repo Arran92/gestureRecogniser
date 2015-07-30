@@ -14,6 +14,14 @@
 		6679AE1B1B601C6400C6D34C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6679AE1A1B601C6400C6D34C /* Images.xcassets */; };
 		6679AE1E1B601C6400C6D34C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6679AE1C1B601C6400C6D34C /* LaunchScreen.xib */; };
 		6679AE2A1B601C6400C6D34C /* CoreMotionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679AE291B601C6400C6D34C /* CoreMotionTests.m */; };
+		6679AE351B60200C00C6D34C /* GestureRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679AE341B60200C00C6D34C /* GestureRecorder.m */; };
+		6679AE381B6020A000C6D34C /* Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679AE371B6020A000C6D34C /* Gesture.m */; };
+		6679AE3B1B6022D000C6D34C /* Matrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679AE3A1B6022D000C6D34C /* Matrix.m */; };
+		6679AE3E1B602DC200C6D34C /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679AE3D1B602DC200C6D34C /* Score.m */; };
+		6679AE421B60307C00C6D34C /* ThreeDollarGestureRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679AE411B60307C00C6D34C /* ThreeDollarGestureRecogniser.m */; };
+		6679AE481B62E50F00C6D34C /* GestureDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679AE471B62E50F00C6D34C /* GestureDB.m */; };
+		6679AE4C1B62E63400C6D34C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6679AE4B1B62E63400C6D34C /* libsqlite3.dylib */; };
+		6679AE4F1B63A65800C6D34C /* TrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679AE4E1B63A65800C6D34C /* TrainingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +48,23 @@
 		6679AE231B601C6400C6D34C /* CoreMotionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreMotionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6679AE281B601C6400C6D34C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6679AE291B601C6400C6D34C /* CoreMotionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreMotionTests.m; sourceTree = "<group>"; };
+		6679AE331B60200C00C6D34C /* GestureRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecorder.h; sourceTree = "<group>"; };
+		6679AE341B60200C00C6D34C /* GestureRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureRecorder.m; sourceTree = "<group>"; };
+		6679AE361B6020A000C6D34C /* Gesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gesture.h; sourceTree = "<group>"; };
+		6679AE371B6020A000C6D34C /* Gesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gesture.m; sourceTree = "<group>"; };
+		6679AE391B6022D000C6D34C /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		6679AE3A1B6022D000C6D34C /* Matrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix.m; sourceTree = "<group>"; };
+		6679AE3C1B602DC200C6D34C /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		6679AE3D1B602DC200C6D34C /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
+		6679AE3F1B602FD000C6D34C /* GestureRecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecorderDelegate.h; sourceTree = "<group>"; };
+		6679AE401B60307C00C6D34C /* ThreeDollarGestureRecogniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDollarGestureRecogniser.h; sourceTree = "<group>"; };
+		6679AE411B60307C00C6D34C /* ThreeDollarGestureRecogniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeDollarGestureRecogniser.m; sourceTree = "<group>"; };
+		6679AE431B60309C00C6D34C /* GestureRecogniserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecogniserDelegate.h; sourceTree = "<group>"; };
+		6679AE461B62E50F00C6D34C /* GestureDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureDB.h; sourceTree = "<group>"; };
+		6679AE471B62E50F00C6D34C /* GestureDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureDB.m; sourceTree = "<group>"; };
+		6679AE4B1B62E63400C6D34C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		6679AE4D1B63A65800C6D34C /* TrainingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingViewController.h; sourceTree = "<group>"; };
+		6679AE4E1B63A65800C6D34C /* TrainingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6679AE4C1B62E63400C6D34C /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +89,7 @@
 		6679AE011B601C6400C6D34C = {
 			isa = PBXGroup;
 			children = (
+				6679AE4B1B62E63400C6D34C /* libsqlite3.dylib */,
 				6679AE0C1B601C6400C6D34C /* CoreMotion */,
 				6679AE261B601C6400C6D34C /* CoreMotionTests */,
 				6679AE0B1B601C6400C6D34C /* Products */,
@@ -85,6 +112,22 @@
 				6679AE121B601C6400C6D34C /* AppDelegate.m */,
 				6679AE141B601C6400C6D34C /* ViewController.h */,
 				6679AE151B601C6400C6D34C /* ViewController.m */,
+				6679AE4D1B63A65800C6D34C /* TrainingViewController.h */,
+				6679AE4E1B63A65800C6D34C /* TrainingViewController.m */,
+				6679AE331B60200C00C6D34C /* GestureRecorder.h */,
+				6679AE341B60200C00C6D34C /* GestureRecorder.m */,
+				6679AE3F1B602FD000C6D34C /* GestureRecorderDelegate.h */,
+				6679AE361B6020A000C6D34C /* Gesture.h */,
+				6679AE371B6020A000C6D34C /* Gesture.m */,
+				6679AE391B6022D000C6D34C /* Matrix.h */,
+				6679AE3A1B6022D000C6D34C /* Matrix.m */,
+				6679AE3C1B602DC200C6D34C /* Score.h */,
+				6679AE3D1B602DC200C6D34C /* Score.m */,
+				6679AE461B62E50F00C6D34C /* GestureDB.h */,
+				6679AE471B62E50F00C6D34C /* GestureDB.m */,
+				6679AE431B60309C00C6D34C /* GestureRecogniserDelegate.h */,
+				6679AE401B60307C00C6D34C /* ThreeDollarGestureRecogniser.h */,
+				6679AE411B60307C00C6D34C /* ThreeDollarGestureRecogniser.m */,
 				6679AE171B601C6400C6D34C /* Main.storyboard */,
 				6679AE1A1B601C6400C6D34C /* Images.xcassets */,
 				6679AE1C1B601C6400C6D34C /* LaunchScreen.xib */,
@@ -219,9 +262,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6679AE381B6020A000C6D34C /* Gesture.m in Sources */,
+				6679AE481B62E50F00C6D34C /* GestureDB.m in Sources */,
 				6679AE161B601C6400C6D34C /* ViewController.m in Sources */,
+				6679AE3B1B6022D000C6D34C /* Matrix.m in Sources */,
+				6679AE351B60200C00C6D34C /* GestureRecorder.m in Sources */,
+				6679AE3E1B602DC200C6D34C /* Score.m in Sources */,
 				6679AE131B601C6400C6D34C /* AppDelegate.m in Sources */,
 				6679AE101B601C6400C6D34C /* main.m in Sources */,
+				6679AE4F1B63A65800C6D34C /* TrainingViewController.m in Sources */,
+				6679AE421B60307C00C6D34C /* ThreeDollarGestureRecogniser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +398,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CoreMotion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -358,6 +409,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CoreMotion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -416,6 +468,7 @@
 				6679AE2F1B601C6400C6D34C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6679AE301B601C6400C6D34C /* Build configuration list for PBXNativeTarget "CoreMotionTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +477,7 @@
 				6679AE321B601C6400C6D34C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
