@@ -36,6 +36,12 @@
     [self.gestureRecorder startRecording];
 }
 
+- (IBAction)stopButton:(id)sender {
+    
+    [self.gestureRecorder stopRecording];
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {
