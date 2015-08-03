@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ThreeDollarGestureRecogniser.h"
+#define RESAMPLE_AMOUNT 50
 
 @interface ViewController ()
 
@@ -33,12 +34,14 @@
 
 - (void)inThreadStartDoJob:(id)theJobToDo {
     
-    self.gestureRecogniser = [[ThreeDollarGestureRecogniser alloc]initWithResampleAmount:50];
+    self.gestureRecogniser = [[ThreeDollarGestureRecogniser alloc]initWithResampleAmount:RESAMPLE_AMOUNT];
 
     self.lastRecognisedGesture = [self.gestureRecogniser recogniseGesture:self.gestureRecorder.gesture fromGestures:self.gestureDB.gestureDict];
     
     NSLog(@"gestureRecogniser %@",self.gestureRecogniser);
     NSLog(@"recogniseGesture returned with GUESS %@",self.lastRecognisedGesture);
+    
+    self.label.text = self.lastRecognisedGesture;
     
     [NSThread sleepForTimeInterval:0.01];
     [self performSelectorOnMainThread:@selector(didStopJobWithStatus:) withObject:nil waitUntilDone:NO];

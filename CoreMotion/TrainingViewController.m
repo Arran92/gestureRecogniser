@@ -30,6 +30,13 @@
     // Do any additional setup after loading the view.
 
 }
+- (IBAction)sensorTagButton:(id)sender {
+    
+    self.gestureRecorder = [[GestureRecorder alloc]initWithNameForGesture:self.gestureNametextField.text andDelegate:self];
+    [self.gestureRecorder startRecording];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

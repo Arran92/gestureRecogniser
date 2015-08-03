@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Gesture.h"
 #import "GestureRecorderDelegate.h"
+
 @import CoreMotion;
 
 @interface GestureRecorder : NSObject
@@ -26,7 +27,7 @@
 
 
 
-
+- (void)outputAccelerationData:(float)X Y:(float)Y Z:(float)Z;
 - (id)initWithNameForGesture:(NSString*)gestureName andDelegate:(id)aDelegate;
 
 - (void)startRecording;

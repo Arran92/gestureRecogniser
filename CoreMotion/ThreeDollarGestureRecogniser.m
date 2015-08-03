@@ -86,13 +86,27 @@
     NSArray *scoreTableSorted = [scoreTable sortedArrayUsingSelector:@selector(compare:)];
     
     Score *s;
+    
+    NSString *lowestScoreShape;
+    int shapeScore = INFINITY;
     for(int i = [scoreTableSorted count]-1; i>=0; i--) {
         s = [scoreTableSorted objectAtIndex:i];
         NSLog(@"distance %f score %f for %@",s.distance,s.score,s.gid);
+        int compare = fabs(s.score);
+        if(compare < shapeScore) {
+            shapeScore = compare;
+            lowestScoreShape = s.gid;
+        }
     }
+    return lowestScoreShape;
     
-    recGest = [self recognise_from_scoretable:scoreTableSorted];
-    return recGest;
+    
+    
+    
+   // recGest = [self recognise_from_scoretable:scoreTableSorted];
+   // return recGest;
+    
+    
 }
 
 - (float)distance_at_best_angle_rangeX:(float)angularRangeX Y:(float)angularRangeY Z:(float)angularRangeZ increment:(float)increment candidateTrace:(Matrix *)candidate_points libraryTrace:(Matrix *)library_points andCutOffAngle:(float)cutoff_angle {
@@ -226,6 +240,8 @@
 
 
 - (NSString*)recognise_from_scoretable:(NSArray *)scoreTable {
+    
+    NSLog(@"RECOGNISING FROM SCORETABLE");
     
     //detect at least 2 candidates of same gesture id with score >.55
     int count_h1 = 0;

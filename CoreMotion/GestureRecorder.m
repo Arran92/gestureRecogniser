@@ -7,13 +7,21 @@
 //
 
 #import "GestureRecorder.h"
+#import "SensorTag.h"
+
 #define ACCELEROMETER_FREQUENCY 100
 #define GESTURE_MAX_SECONDS 4
 #define FILTER_ENABLED TRUE
 #define FILTERING_FACTOR 0.95
 
+@interface GestureRecorder()
+@property (strong,nonatomic) SensorTag *sensorTag;
+
+@end
+
 @implementation GestureRecorder
 
+//for sensortag change so the accel values come from the sensortag
 - (id)initWithNameForGesture:(NSString *)gestureName andDelegate:(id)aDelegate {
     
     if(self = [super init]) {
@@ -34,8 +42,12 @@
 
 - (void)configureAcclerometer {
     
-    self.motionManager = [[CMMotionManager alloc]init];
-    self.motionManager.accelerometerUpdateInterval = 0.01;
+ //   self.motionManager = [[CMMotionManager alloc]init];
+  //  self.motionManager.accelerometerUpdateInterval = 0.01;
+    
+    //replace with start of acc data
+    
+    self.sensorTag = [[SensorTag alloc]initTheSensorTagWithGestureRecorder:self];
     
     NSLog(@"accelerometer initialised");
 }
@@ -48,12 +60,15 @@
     self.maxSamples = ACCELEROMETER_FREQUENCY * GESTURE_MAX_SECONDS;
     self.gesture = [[Gesture alloc]initWithName:self.desiredName andCapacity:self.maxSamples];
     
+   
+    
+    
     self.isRecording = YES;
     NSLog(@"accelerometer is on");
     
     
     // allocate a gesture once and only once
-    [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+  //  [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
         
        
         
@@ -64,13 +79,13 @@
        // }
         
  
-            [self outputAccelerationData:accelerometerData.acceleration];
+    //        [self outputAccelerationData:accelerometerData.acceleration];
         
         
-        if(error)
-            NSLog(@"%@",error);
+ //       if(error)
+  //          NSLog(@"%@",error);
         
-    }];
+   // }];
 }
 
 - (void)stopRecording {
@@ -79,7 +94,9 @@
     [self.gesture printGestureWithTrace:NO];
 }
 
-- (void)outputAccelerationData:(CMAcceleration)acceleration {
+- (void)outputAccelerationData:(float)X Y:(float)Y Z:(float)Z {
+//- (void)outputAccelerationData:(CMAcceleration)acceleration {
+
     
     if(!self.isRecording) return;
    
@@ -87,25 +104,27 @@
     
    
     
-    if(FILTER_ENABLED) {
-        self.accelX = (acceleration.x *FILTERING_FACTOR) + (self.accelX * (1.0 - FILTERING_FACTOR));
-        self.accelY = (acceleration.y *FILTERING_FACTOR) + (self.accelY * (1.0 - FILTERING_FACTOR));
-        self.accelZ = (acceleration.z *FILTERING_FACTOR) + (self.accelZ * (1.0 - FILTERING_FACTOR));
-    }
-    
-    else {
-        self.accelX = acceleration.x;
-        self.accelY = acceleration.y;
-        self.accelZ = acceleration.z;
-}
+//    if(FILTER_ENABLED) {
+//        self.accelX = (acceleration.x *FILTERING_FACTOR) + (self.accelX * (1.0 - FILTERING_FACTOR));
+//        self.accelY = (acceleration.y *FILTERING_FACTOR) + (self.accelY * (1.0 - FILTERING_FACTOR));
+//        self.accelZ = (acceleration.z *FILTERING_FACTOR) + (self.accelZ * (1.0 - FILTERING_FACTOR));
+//    }
+//    
+//    else {
+//        self.accelX = acceleration.x;
+//        self.accelY = acceleration.y;
+//        self.accelZ = acceleration.z;
+//}
 
     if(self.gesture.gestureTrace == nil) {
         self.gesture.gestureTrace = [[Matrix alloc] initMatrixWithRows:400 andCols:3];
     }
     
-    self.gesture.gestureTrace.data[self.samples][0] = self.accelX;
-    self.gesture.gestureTrace.data[self.samples][1] = self.accelY;
-    self.gesture.gestureTrace.data[self.samples][2] = self.accelZ;
+    self.gesture.gestureTrace.data[self.samples][0] = X; //self.accelX;
+    self.gesture.gestureTrace.data[self.samples][1] = Y; //self.accelY;
+    self.gesture.gestureTrace.data[self.samples][2] = Z; //self.accelZ;
+    
+    NSLog(@"X: %0.2f, Y: %0.2f, Z: %0.2f",X,Y,Z);
        
     self.samples++;
     
