@@ -89,10 +89,12 @@
     
     NSString *lowestScoreShape;
     int shapeScore = INFINITY;
+    float compare;
     for(int i = [scoreTableSorted count]-1; i>=0; i--) {
         s = [scoreTableSorted objectAtIndex:i];
         NSLog(@"distance %f score %f for %@",s.distance,s.score,s.gid);
-        int compare = fabs(s.score);
+        compare = fabs(s.score);
+        NSLog(@"%0.2f",compare);
         if(compare < shapeScore) {
             shapeScore = compare;
             lowestScoreShape = s.gid;

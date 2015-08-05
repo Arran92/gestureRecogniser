@@ -32,13 +32,39 @@
 }
 - (IBAction)sensorTagButton:(id)sender {
     
+    NSLog(@"touch down");
+    if(self.isRecordingTraning) return;
+    self.isRecordingTraning = YES;
+    
+    [self.trainButton setTitle:@"Recording Gesture" forState:UIControlStateNormal];
+    self.infoLabel.text = @"start making gesture";
     self.gestureRecorder = [[GestureRecorder alloc]initWithNameForGesture:self.gestureNametextField.text andDelegate:self];
     [self.gestureRecorder startRecording];
+    
+    NSLog(@"touch down END");
 }
 
 - (IBAction)stopButton:(id)sender {
     
+    
+    if(self.forcedStop) {
+        [self didStopJobWithStatus:nil];
+        return;
+    }
+    
+    NSLog(@"touch up inside");
     [self.gestureRecorder stopRecording];
+    self.isRecordingTraning = NO;
+    self.infoLabel.text = @"processing gesture";
+    
+    self.trainButton.enabled = NO;
+    [self.trainButton setTitle:@"please wait" forState:UIControlStateNormal];
+    
+    [self performSelectorInBackground:@selector(inThreadStartDoJob:) withObject:nil];
+    
+    NSLog(@"touch up inside END");
+    
+    [self.gestureDB printAllGestures];
 }
 
 

@@ -38,7 +38,7 @@
 
     self.lastRecognisedGesture = [self.gestureRecogniser recogniseGesture:self.gestureRecorder.gesture fromGestures:self.gestureDB.gestureDict];
     
-    NSLog(@"gestureRecogniser %@",self.gestureRecogniser);
+
     NSLog(@"recogniseGesture returned with GUESS %@",self.lastRecognisedGesture);
     
     self.label.text = self.lastRecognisedGesture;

@@ -112,7 +112,7 @@ NSString *keysPressState = @"FFE1";
  //   while([characteristic.UUID isEqual:[CBUUID UUIDWithString:keysPressState]]) {
    //      ++self.buttonCount;
    //     NSLog(@"increase");
-        if([characteristic.UUID isEqual:[CBUUID UUIDWithString:accData]]) {
+        if([characteristic.UUID isEqual:[CBUUID UUIDWithString:accData]] && self.gestureRecorderObject.isRecording) {
             NSLog(@"output");
             [self.gestureRecorderObject outputAccelerationData:[sensorKXTJ9 calcXValue:characteristic.value] Y:[sensorKXTJ9 calcYValue:characteristic.value] Z:[sensorKXTJ9 calcZValue:characteristic.value]];
             NSLog(@"Button count: %i",self.buttonCount);
@@ -120,12 +120,6 @@ NSString *keysPressState = @"FFE1";
  //   }
     
 
-    //reset the buttonCount
-    if(self.buttonCount >= 4) {
-        self.buttonCount = 0;
-        [self.gestureRecorderObject stopRecording];
-        NSLog(@"STOP");
-    }
     
 }
 
