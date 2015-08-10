@@ -52,11 +52,54 @@ static sqlite3_stmt *addStmt = nil;
     
     NSLog(@"%@: saving file: %@ under path: %@",[self class],self.filename,self.path);
     
-    if(![self.gestures writeToFile:self.path atomically:YES]) {
-        NSLog(@"%@: ERROR could not save file: %@ at path %@",[self class],self.filename,self.path);
-    }
+//    if(![self.gestures writeToFile:self.path atomically:YES]) {
+//        NSLog(@"%@: ERROR could not save file: %@ at path %@",[self class],self.filename,self.path);
+//    }
+    
+    //save the dictionary to file and then compare it to the gestures
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+   
+    NSString *filePath = [documentsDirectoryPath stringByAppendingPathComponent:@"dict.plist"];
+
+    NSError *error;
+    
+    NSDictionary *new = [NSDictionary dictionaryWithDictionary:self.gestureDict];
+
+    
+    
+ //   NSData *jsonData = [NSJSONSerialization dataWithJSONObject:new
+    //                                                   options:0
+      //                                                   error:&error];
+    
+    
+  //  BOOL success = [new writeToFile:filePath atomically:YES];
+    
+   BOOL success = [NSKeyedArchiver archiveRootObject:new toFile:filePath];
+    
+    if(success)
+        NSLog(@"WRITING TO FILE");
+    
+    else
+        NSLog(@"DID NOT SAVE");
+  
+    
 }
 
+//- (IBAction)saveUser:(id)sender{
+//    NSString *name = [nameField stringValue];
+//    NSString *weight = [weightField stringValue];
+//    NSDate *date = [datePick dateValue];
+//    
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    
+//    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+//    [dict setValue:[nameField stringValue] forKey:@"name"];
+//    [dict setValue:[weightField stringValue] forKey:@"weight"];
+//    [dict setValue:date forKey:@"date"];
+//    [dict writeToFile:name atomically:YES];
+//}
 
 #pragma adding gestures
 - (BOOL)addGesture:(Gesture *)aGesture {

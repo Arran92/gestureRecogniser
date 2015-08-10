@@ -95,12 +95,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSt-je-gEF">
-                                <rect key="frame" x="137" y="455" width="33" height="30"/>
+                                <rect key="frame" x="137" y="427" width="33" height="30"/>
                                 <state key="normal" title="Stop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="stopButton:" destination="oco-42-Rnq" eventType="touchUpInside" id="yO4-ZA-Nwh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2i-MT-cL1">
+                                <rect key="frame" x="124" y="495" width="83" height="30"/>
+                                <state key="normal" title="Save To File">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveDictionary:" destination="oco-42-Rnq" eventType="touchUpInside" id="xMK-Ya-PmW"/>
                                 </connections>
                             </button>
                         </subviews>

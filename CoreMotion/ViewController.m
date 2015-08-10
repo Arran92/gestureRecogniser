@@ -61,11 +61,42 @@
     }
     
     NSLog(@"touchUpInside");
+   
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectoryPath stringByAppendingPathComponent:@"dict.plist"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        NSDictionary *savedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        
+        NSLog(@"saved data: %@",savedData);
+        self.gestureDB.gestureDict = [NSMutableDictionary dictionaryWithDictionary:savedData];
+        Gesture *retrievedFromFile = [[Gesture alloc]init];
+        
+        NSArray *retrieved = [self.gestureDB.gestureDict objectForKey:@"square"];
+        
+        retrievedFromFile = [retrieved objectAtIndex:0];
+        
+        
+        Matrix *fileMatrix = [[Matrix alloc]initMatrixWithRows:400 andCols:3];
+        fileMatrix = retrievedFromFile.gestureTrace;
+     
+        NSLog(@"fileMatrix: %@",retrievedFromFile.gestureTrace);
+    }
+    
+    
     [self.gestureRecorder stopRecording];
     self.isRecordingTraining = NO;
     [self performSelectorInBackground:@selector(inThreadStartDoJob:) withObject:nil];
     
     NSLog(@"touchUpInside END");
+    
+    
+    
+    
 }
 
 - (IBAction)touchDown:(id)sender {
@@ -79,6 +110,8 @@
     [self.gestureRecorder startRecording];
     
     NSLog(@"touch down END");
+    
+    
     
 }
 @end

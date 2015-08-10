@@ -69,6 +69,32 @@ static int MATRIX_COUNT = 0;
     }
 }
 
+-(void)encodeWithCoder:(NSCoder *)encoder {
+    
+   
+    [encoder encodeInt:self.rows forKey:@"rows"];
+    [encoder encodeInt:self.cols forKey:@"columns"];
+    [encoder encodeArrayOfObjCType:@encode(float) count:self.rows * self.cols at:self.data];
+    
+        
+ 
+    
+
+}
+
+- (id)initWithCoder:(NSCoder*)decoder {
+   
+    if(self = [super init]) {
+        self.rows = [decoder decodeIntForKey:@"rows"];
+        self.cols = [decoder decodeIntForKey:@"cols"];
+        NSLog(@"number of rows: %i",self.rows);
+        
+        [decoder decodeArrayOfObjCType:@encode(float) count:self.rows*self.cols at:self.data];
+        
+    }
+    
+    return self;
+}
 
 
 @end

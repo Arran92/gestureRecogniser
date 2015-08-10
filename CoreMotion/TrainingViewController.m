@@ -207,5 +207,9 @@
     
 
 }
+- (IBAction)saveDictionary:(id)sender {
+    
+    [self.gestureDB saveToFile];
+}
 
 @end

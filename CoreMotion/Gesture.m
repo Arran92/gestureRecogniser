@@ -43,5 +43,21 @@
         [self.gestureTrace printMatrix];
 }
 
+-(void)encodeWithCoder:(NSCoder *)encoder {
+    
+    [encoder encodeObject:self.gestureTrace forKey:@"gestureTrace"];
+    [encoder encodeObject:self.gestureID forKey:@"gestureID"];
+   
+}
+
+- (id)initWithCoder:(NSCoder*)decoder {
+    
+    if(self = [super init]) {
+        self.gestureTrace = [decoder decodeObjectForKey:@"gestureTrace"];
+        self.gestureID = [decoder decodeObjectForKey:@"gestureID"];
+    }
+    return self;
+}
+
 
 @end

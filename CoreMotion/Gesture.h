@@ -20,5 +20,7 @@
 - (id)initWithName:(NSString*)aName databaseID:(uint)aDatabaseID creationDate:(NSDate*)date andTrace:(Matrix*)trace;
 - (void)printGestureWithTrace:(BOOL)withTrace;
 
+- (id)initWithCoder:(NSCoder*)decoder;
+
 
 @end
