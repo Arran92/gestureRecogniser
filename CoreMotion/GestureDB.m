@@ -91,12 +91,19 @@ static sqlite3_stmt *addStmt = nil;
         
         if([arrayForNames count] > 0) {
             [arrayForNames addObject:aGesture];
+           
         }
         else {
             NSMutableArray *newNameArray = [[NSMutableArray alloc]initWithCapacity:5];
             [newNameArray addObject:aGesture];
             [self.gestureDict setValue:newNameArray forKey:aGesture.gestureID];
         }
+        Matrix *printGestureTrace = [[Matrix alloc]init];
+        printGestureTrace = aGesture.gestureTrace;
+        
+        NSLog(@"PRINTING GESTURE");
+        
+        [printGestureTrace printMatrix];
         
         return YES;
         
