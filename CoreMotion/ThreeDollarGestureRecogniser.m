@@ -46,7 +46,7 @@
 }
 
 - (NSString*)recogniseGesture:(Gesture *)candidate fromGestures:(NSDictionary *)library_gestures {
-    NSString *recGest = nil;
+  //  NSString *recGest = nil;
     
     float pi_half = M_PI/2;
     NSLog(@"before prepareMatrixForLibrary library_gestures: %lu",(unsigned long)[library_gestures count]);
@@ -85,12 +85,13 @@
     theRange.length = 3;
     NSArray *scoreTableSorted = [scoreTable sortedArrayUsingSelector:@selector(compare:)];
     
-    Score *s;
+    Score *s = [[Score alloc]init];
     
     NSString *lowestScoreShape;
-    int shapeScore = INFINITY;
-    float compare;
+    float shapeScore = INFINITY;
+    float compare = INFINITY;
     for(int i = [scoreTableSorted count]-1; i>=0; i--) {
+        
         s = [scoreTableSorted objectAtIndex:i];
         NSLog(@"distance %f score %f for %@",s.distance,s.score,s.gid);
         compare = fabs(s.score);
@@ -113,10 +114,10 @@
 
 - (float)distance_at_best_angle_rangeX:(float)angularRangeX Y:(float)angularRangeY Z:(float)angularRangeZ increment:(float)increment candidateTrace:(Matrix *)candidate_points libraryTrace:(Matrix *)library_points andCutOffAngle:(float)cutoff_angle {
     
-    float mind = MAXFLOAT;
-    float maxd = FLT_MIN;
-    float minDistAngle = 0.0f;
-    float maxDistAngle = 0.0f;
+//    float mind = MAXFLOAT;
+ //   float maxd = FLT_MIN;
+  //  float minDistAngle = 0.0f;
+  //  float maxDistAngle = 0.0f;
     
     int length1 = candidate_points.rows;
     int length2 = library_points.rows;

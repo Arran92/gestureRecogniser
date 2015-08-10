@@ -65,7 +65,12 @@ static sqlite3_stmt *addStmt = nil;
     if(self.gestures != nil) {
         NSLog(@"%@: adding gesture: %@",[self class],aGesture.gestureID);
         BOOL dbSuccess = [self addGesturetoDB:aGesture];
+        if(dbSuccess)
+            NSLog(@"DB SUCCESS");
         BOOL arraySuccess = [self addGestureToArray:aGesture];
+        if(arraySuccess)
+            NSLog(@"ARRAY SUCCESS");
+        
         if(dbSuccess && arraySuccess) {
             NSLog(@"%@: gesture successfully added with id %d",[self class],aGesture.databaseID);
             return YES;
