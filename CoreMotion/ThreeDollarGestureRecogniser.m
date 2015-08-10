@@ -66,9 +66,13 @@
     
     while((gestureList = [enumerator nextObject])) {
         NSEnumerator *enumerator = [gestureList objectEnumerator];
-        Gesture *gesture;
+        Gesture *gesture = [[Gesture alloc]init];
         int idnr = 0;
-        while((gesture = [enumerator nextObject])) {
+      //  while((gesture = [enumerator nextObject])) {
+        while(([enumerator nextObject] != nil)) {
+           
+            [gesture assignGestureTrace:(NSArray*)gestureList];
+            
             float distance = [self distance_at_best_angle_rangeX:pi_half Y:pi_half Z:pi_half increment:0 candidateTrace:candidate.gestureTrace libraryTrace:gesture.gestureTrace andCutOffAngle:cutoff];
             
             float score = [self score:distance];
@@ -114,10 +118,6 @@
 
 - (float)distance_at_best_angle_rangeX:(float)angularRangeX Y:(float)angularRangeY Z:(float)angularRangeZ increment:(float)increment candidateTrace:(Matrix *)candidate_points libraryTrace:(Matrix *)library_points andCutOffAngle:(float)cutoff_angle {
     
-//    float mind = MAXFLOAT;
- //   float maxd = FLT_MIN;
-  //  float minDistAngle = 0.0f;
-  //  float maxDistAngle = 0.0f;
     
     int length1 = candidate_points.rows;
     int length2 = library_points.rows;

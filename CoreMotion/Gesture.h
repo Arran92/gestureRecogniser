@@ -22,5 +22,6 @@
 
 - (id)initWithCoder:(NSCoder*)decoder;
 
+- (void)assignGestureTrace:(NSArray*)gestureList;
 
 @end

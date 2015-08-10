@@ -60,4 +60,13 @@
 }
 
 
+- (void)assignGestureTrace:(NSArray*)gestureList {
+    
+    self.gestureTrace = [[Matrix alloc]initMatrixWithRows:400 andCols:3];
+   
+    [self.gestureTrace makeDataEqualArray:gestureList];
+}
+
+
+
 @end

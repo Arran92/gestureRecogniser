@@ -27,4 +27,6 @@
 
 + (Matrix*)zeroVec3;
 
+- (void)makeDataEqualArray:(NSArray*)gestureList;
+
 @end

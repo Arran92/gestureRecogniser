@@ -13,20 +13,27 @@ static int MATRIX_COUNT = 0;
 @implementation Matrix
 
 - (void)printVector:(float *)vec withSize:(uint)size {
-    
+  
 
     
-    NSMutableString *out = [[NSMutableString alloc]initWithString:@""];
+    NSMutableString *out = [[NSMutableString alloc]initWithString:@"["];
     for(int i = 0; i < size; i++) {
         [out appendFormat:@"\t %f",vec[i]];
     }
     NSLog(@"%@",out);
 }
 
+
 - (void)printMatrix {
+    NSMutableString *json = json = [NSMutableString stringWithString:@"["];
     for(int i = 0; i < self.rows; i++) {
-        [self printVector:self.data[i] withSize:self.cols];
+       // [self printVector:self.data[i] withSize:self.cols];
+        
+        
+        [json appendFormat:@"[%f, %f, %f], ",self.data[i][0],self.data[i][1],self.data[i][2]];
     }
+    [json appendString:@"],\n"];
+    NSLog(@"%@",json);
 }
 
 - (void)emptyMatrix {
@@ -94,6 +101,21 @@ static int MATRIX_COUNT = 0;
     }
     
     return self;
+}
+
+- (void)makeDataEqualArray:(NSArray*)gestureList {
+    
+    NSLog(@"gesture list count: %li",gestureList.count);
+       for(int i = 0; i < gestureList.count; i++) {
+           NSNumber *arrayElements = [gestureList objectAtIndex:i];
+           NSLog(@"array Elements: %@",arrayElements);
+        
+        self.data[i] = [arrayElements floatValue];
+        
+        
+    }
+    
+    
 }
 
 

@@ -36,6 +36,10 @@
     
     self.gestureRecogniser = [[ThreeDollarGestureRecogniser alloc]initWithResampleAmount:RESAMPLE_AMOUNT];
 
+    //in this ftn need to change the parameter self.gestureDB.gestureDict to json dictionary
+    
+    [self loadJSONIntoDictionary];
+    
     self.lastRecognisedGesture = [self.gestureRecogniser recogniseGesture:self.gestureRecorder.gesture fromGestures:self.gestureDB.gestureDict];
     
 
@@ -64,28 +68,28 @@
    
     
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectoryPath = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectoryPath stringByAppendingPathComponent:@"dict.plist"];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        NSData *data = [NSData dataWithContentsOfFile:filePath];
-        NSDictionary *savedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        
-        NSLog(@"saved data: %@",savedData);
-        self.gestureDB.gestureDict = [NSMutableDictionary dictionaryWithDictionary:savedData];
-        Gesture *retrievedFromFile = [[Gesture alloc]init];
-        
-        NSArray *retrieved = [self.gestureDB.gestureDict objectForKey:@"square"];
-        
-        retrievedFromFile = [retrieved objectAtIndex:0];
-        
-        
-        Matrix *fileMatrix = [[Matrix alloc]initMatrixWithRows:400 andCols:3];
-        fileMatrix = retrievedFromFile.gestureTrace;
-     
-        NSLog(@"fileMatrix: %@",retrievedFromFile.gestureTrace);
-    }
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+//    NSString *filePath = [documentsDirectoryPath stringByAppendingPathComponent:@"dict.plist"];
+//    
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+//        NSData *data = [NSData dataWithContentsOfFile:filePath];
+//        NSDictionary *savedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//        
+//        NSLog(@"saved data: %@",savedData);
+//        self.gestureDB.gestureDict = [NSMutableDictionary dictionaryWithDictionary:savedData];
+//        Gesture *retrievedFromFile = [[Gesture alloc]init];
+//        
+//        NSArray *retrieved = [self.gestureDB.gestureDict objectForKey:@"square"];
+//        
+//        retrievedFromFile = [retrieved objectAtIndex:0];
+//        
+//        
+//        Matrix *fileMatrix = [[Matrix alloc]initMatrixWithRows:400 andCols:3];
+//        fileMatrix = retrievedFromFile.gestureTrace;
+//     
+//        NSLog(@"fileMatrix: %@",retrievedFromFile.gestureTrace);
+ //   }
     
     
     [self.gestureRecorder stopRecording];
@@ -111,7 +115,48 @@
     
     NSLog(@"touch down END");
     
-    
-    
 }
+
+- (void)loadJSONIntoDictionary {
+      NSData *json = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Gestures" ofType:@"json"]];
+    
+    BOOL loadFromFile; NSError *error;
+    loadFromFile = [self loadJSONintoTemplates:json error:error];
+    if(!loadFromFile) {
+        NSLog(@"cannot load gestures %@",error);
+        return;
+    }
+}
+
+- (BOOL)loadJSONintoTemplates:(NSData*)json error:(NSError*)error {
+    
+    NSMutableDictionary *holdingDict = [NSJSONSerialization JSONObjectWithData:json options:0 error:&error];
+    
+    if(!holdingDict) {
+        NSLog(@"not able to load from the json file"); return NO;
+    }
+    
+//    //need to convert the data from json file into CGPoint and keys
+//    NSMutableDictionary *output = [NSMutableDictionary dictionary];
+//    [holdingDict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *value, BOOL *stop) {
+//        NSMutableArray *points = [NSMutableArray arrayWithCapacity:value.count];
+//        for(NSArray *pointArray in value) {
+//            CGPoint pointToAdd = CGPointMake([pointArray[0] floatValue], [pointArray[1] floatValue]);
+//            [points addObject:[NSValue valueWithCGPoint:pointToAdd]];
+//            
+//            
+//        }
+//        //the dictionary with key 'key' aligns with the corresponding points
+//        output[key] = [points copy];
+//    }];
+    
+    self.gestureDB.gestureDict = holdingDict;
+    
+    NSLog(@"dictionary: %@",self.gestureDB.gestureDict);
+    
+    return YES;
+}
+
+
+
 @end

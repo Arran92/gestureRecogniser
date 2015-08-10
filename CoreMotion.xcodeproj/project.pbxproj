@@ -24,6 +24,7 @@
 		6679AE4F1B63A65800C6D34C /* TrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679AE4E1B63A65800C6D34C /* TrainingViewController.m */; };
 		66EF5BA41B70066600E00A88 /* SensorTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EF5BA31B70066600E00A88 /* SensorTag.m */; };
 		66EF5BA71B70067300E00A88 /* Sensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EF5BA61B70067300E00A88 /* Sensor.m */; };
+		66EF5BA91B7908B700E00A88 /* Gestures.json in Resources */ = {isa = PBXBuildFile; fileRef = 66EF5BA81B7908B700E00A88 /* Gestures.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		66EF5BA31B70066600E00A88 /* SensorTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorTag.m; sourceTree = "<group>"; };
 		66EF5BA51B70067300E00A88 /* Sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sensor.h; sourceTree = "<group>"; };
 		66EF5BA61B70067300E00A88 /* Sensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sensor.m; sourceTree = "<group>"; };
+		66EF5BA81B7908B700E00A88 /* Gestures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Gestures.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				6679AE4E1B63A65800C6D34C /* TrainingViewController.m */,
 				6679AE331B60200C00C6D34C /* GestureRecorder.h */,
 				6679AE341B60200C00C6D34C /* GestureRecorder.m */,
+				66EF5BA81B7908B700E00A88 /* Gestures.json */,
 				66EF5BA21B70066600E00A88 /* SensorTag.h */,
 				66EF5BA31B70066600E00A88 /* SensorTag.m */,
 				66EF5BA51B70067300E00A88 /* Sensor.h */,
@@ -255,6 +258,7 @@
 				6679AE191B601C6400C6D34C /* Main.storyboard in Resources */,
 				6679AE1E1B601C6400C6D34C /* LaunchScreen.xib in Resources */,
 				6679AE1B1B601C6400C6D34C /* Images.xcassets in Resources */,
+				66EF5BA91B7908B700E00A88 /* Gestures.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
