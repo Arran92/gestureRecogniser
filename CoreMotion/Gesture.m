@@ -60,12 +60,62 @@
 }
 
 
-- (void)assignGestureTrace:(NSArray*)gestureList {
+- (Matrix*)makeIntoGesture:(NSArray*)gestureList {
     
-    self.gestureTrace = [[Matrix alloc]initMatrixWithRows:400 andCols:3];
-   
-    [self.gestureTrace makeDataEqualArray:gestureList];
+    NSString * dataString = [[gestureList valueForKey:@"description"] componentsJoinedByString:@""];
+    
+    
+    NSArray * rowsArray = [dataString componentsSeparatedByString:@"],],"];
+    
+    NSLog(@"rowsArray: %@", rowsArray);
+    
+    int max = (int)[rowsArray count];
+    Matrix* gestureTrace = [[Matrix alloc] initMatrixWithRows:400 andCols:3];
+    
+    NSUInteger i, count = [rowsArray count];
+   // NSLog(@"count: %li",count);
+    for (i = 0; i < count; i++) {
+        NSString * aRow = [rowsArray objectAtIndex:i];
+        NSArray * values = [aRow componentsSeparatedByString:@")"];
+     //   NSLog(@"length of values array: %lu", (unsigned long)[values count]);
+    //    NSLog(@"values Array: %@",values);
+        int j;
+        for(j = 0; j < 19; j++) {
+            NSString *oneEntry = [values objectAtIndex:j];
+            NSArray *individualElements = [oneEntry componentsSeparatedByString:@","];
+            NSLog(@"oneEntry: %@",oneEntry);
+            NSMutableString *validRep;
+            int place = 0;
+            for(int k = 0; k < [oneEntry length]; k++) {
+                char check = [oneEntry characterAtIndex:k];
+                if(isalpha(check)) {
+                    NSString *add = [NSString stringWithFormat:@"%c",check];
+                    [validRep insertString:add atIndex:place];
+                    place++;
+                }
+            }
+            NSLog(@"validRep: %@",validRep);
+            NSLog(@"ind: %0.2f", [validRep floatValue]);
+            NSLog(@"indObject: %@",[individualElements objectAtIndex:1]);
+            gestureTrace.data[j][0] = [individualElements[0] floatValue];
+            gestureTrace.data[j][1] = [[individualElements objectAtIndex:1] floatValue];
+            gestureTrace.data[j][2] = [[individualElements objectAtIndex:2] floatValue];
+            NSLog(@"X: %f, Y: %f, Z: %f",gestureTrace.data[i][0],gestureTrace.data[i][1],gestureTrace.data[i][2]);
+            
+        }
+        
+    
+    }
+    
+    
+    NSLog(@"gestureTrace: %@", gestureTrace);
+    
+    return gestureTrace;
+    
+    
+    
 }
+
 
 
 

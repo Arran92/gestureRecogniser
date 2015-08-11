@@ -45,6 +45,7 @@
     
 }
 
+//change library_gestures into dictionary of Matrix objects before this is called
 - (NSString*)recogniseGesture:(Gesture *)candidate fromGestures:(NSDictionary *)library_gestures {
   //  NSString *recGest = nil;
     
@@ -66,13 +67,11 @@
     
     while((gestureList = [enumerator nextObject])) {
         NSEnumerator *enumerator = [gestureList objectEnumerator];
-        Gesture *gesture = [[Gesture alloc]init];
+        Gesture *gesture;
         int idnr = 0;
-      //  while((gesture = [enumerator nextObject])) {
-        while(([enumerator nextObject] != nil)) {
+       while((gesture = [enumerator nextObject])) {
            
-            [gesture assignGestureTrace:(NSArray*)gestureList];
-            
+            //gesture.gestureTrace is an array not a Matrix object
             float distance = [self distance_at_best_angle_rangeX:pi_half Y:pi_half Z:pi_half increment:0 candidateTrace:candidate.gestureTrace libraryTrace:gesture.gestureTrace andCutOffAngle:cutoff];
             
             float score = [self score:distance];

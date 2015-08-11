@@ -103,20 +103,7 @@ static int MATRIX_COUNT = 0;
     return self;
 }
 
-- (void)makeDataEqualArray:(NSArray*)gestureList {
     
-    NSLog(@"gesture list count: %li",gestureList.count);
-       for(int i = 0; i < gestureList.count; i++) {
-           NSNumber *arrayElements = [gestureList objectAtIndex:i];
-           NSLog(@"array Elements: %@",arrayElements);
-        
-        self.data[i] = [arrayElements floatValue];
-        
-        
-    }
-    
-    
-}
 
 
 @end

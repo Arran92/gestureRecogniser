@@ -36,9 +36,10 @@
     
     self.gestureRecogniser = [[ThreeDollarGestureRecogniser alloc]initWithResampleAmount:RESAMPLE_AMOUNT];
 
-    //in this ftn need to change the parameter self.gestureDB.gestureDict to json dictionary
     
     [self loadJSONIntoDictionary];
+    
+    //need to make the dictionary into Matrix objects
     
     self.lastRecognisedGesture = [self.gestureRecogniser recogniseGesture:self.gestureRecorder.gesture fromGestures:self.gestureDB.gestureDict];
     
@@ -136,9 +137,19 @@
         NSLog(@"not able to load from the json file"); return NO;
     }
     
-//    //need to convert the data from json file into CGPoint and keys
-//    NSMutableDictionary *output = [NSMutableDictionary dictionary];
-//    [holdingDict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *value, BOOL *stop) {
+
+    NSMutableDictionary *output = [NSMutableDictionary dictionary];
+    [holdingDict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *value, BOOL *stop) {
+        
+        //each array value has the coordinates
+        Matrix *newMatrix = [[Matrix alloc]init];
+        
+        newMatrix = [self turnArrayIntoMatrix:value];
+        NSDate *date = [NSDate date];
+        
+        Gesture *insertDictionary = [[Gesture alloc]initWithName:key databaseID:-1 creationDate:date andTrace:newMatrix];
+        
+        NSLog(@"newMatrix: %@",newMatrix);
 //        NSMutableArray *points = [NSMutableArray arrayWithCapacity:value.count];
 //        for(NSArray *pointArray in value) {
 //            CGPoint pointToAdd = CGPointMake([pointArray[0] floatValue], [pointArray[1] floatValue]);
@@ -147,14 +158,44 @@
 //            
 //        }
 //        //the dictionary with key 'key' aligns with the corresponding points
-//        output[key] = [points copy];
-//    }];
+        NSArray *newValue = [NSArray arrayWithObject:insertDictionary];
+        output[key] = newValue;
+    }];
     
-    self.gestureDB.gestureDict = holdingDict;
+    //this needs to be a dictionary of Matrices
     
-    NSLog(@"dictionary: %@",self.gestureDB.gestureDict);
+   
+    
+    self.gestureDB.gestureDict = output;
+    
     
     return YES;
+}
+
+//get given an array of coordinates to change into a Matrix
+- (Matrix*)turnArrayIntoMatrix:(NSArray*)passedInArray {
+    
+    Matrix *passBack = [[Matrix alloc]initMatrixWithRows:400 andCols:3];
+    
+    NSLog(@"lengthOfPassed: %li",(unsigned long)[passedInArray count]);
+   
+    
+//    NSArray *oneElement = passedInArray[0];
+//    NSLog(@"firstElement: %@",oneElement[0]);
+//    NSLog(@"floatFirstEl: %f",[oneElement[0]floatValue]);
+    
+    for(int i = 0; i < [passedInArray count]; i++) {
+        NSArray *oneSetofCoords = passedInArray[i];
+        passBack.data[i][0] = [oneSetofCoords[0]floatValue];
+        passBack.data[i][1] = [oneSetofCoords[1]floatValue];
+        passBack.data[i][2] = [oneSetofCoords[2]floatValue];
+       
+        
+    }
+    
+    NSLog(@"passBack object: %@", passBack);
+    
+    return passBack;
 }
 
 

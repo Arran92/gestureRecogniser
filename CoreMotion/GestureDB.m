@@ -301,6 +301,7 @@ static sqlite3_stmt *addStmt = nil;
         gestureTrace.data[i][0] = [[values objectAtIndex:0] floatValue];
         gestureTrace.data[i][1] = [[values objectAtIndex:1] floatValue];
         gestureTrace.data[i][2] = [[values objectAtIndex:2] floatValue];
+        NSLog(@"values: %@",values[0]);
     }
     return gestureTrace;
 }
